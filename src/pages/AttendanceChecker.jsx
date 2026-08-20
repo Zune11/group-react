@@ -7,6 +7,11 @@ function AttendanceChecker() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
 
+  const getMinutesFromTime = (timeValue) => {
+    const [hours, minutes] = timeValue.split(":").map(Number);
+    return hours * 60 + minutes;
+  };
+
   const checkAttendance = () => {
     setError("");
     setResult(null);
@@ -17,10 +22,10 @@ function AttendanceChecker() {
       return;
     }
 
-    const time = Number(timeIn);
+    const time = getMinutesFromTime(timeIn);
 
-    if (isNaN(time) || time < 0 || time > 24) {
-      setError("Please enter a valid numeric time.");
+    if (Number.isNaN(time)) {
+      setError("Please enter a valid time.");
       return;
     }
 
@@ -28,15 +33,15 @@ function AttendanceChecker() {
     let message = "";
 
     // Attendance conditions
-    if (time <= 8) {
+    if (time <= 8 * 60) {
       status = "On Time";
-      message = "Status: On Time – Good job!";
-    } else if (time <= 9) {
+      message = "Status: On Time - Good job!";
+    } else if (time <= 9 * 60) {
       status = "Late";
-      message = "Status: Late – Please be on time tomorrow.";
+      message = "Status: Late - Please be on time tomorrow.";
     } else {
       status = "Very Late";
-      message = "Status: Very Late – Report to your supervisor.";
+      message = "Status: Very Late - Report to your supervisor.";
     }
 
     setResult({
@@ -78,9 +83,7 @@ function AttendanceChecker() {
             <label>Time In</label>
 
             <input
-              type="number"
-              step="0.1"
-              placeholder="e.g. 8.5 = 8:30 AM"
+              type="time"
               value={timeIn}
               onChange={(e) => setTimeIn(e.target.value)}
             />
