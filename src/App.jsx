@@ -1,122 +1,102 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
+import Navbar from "./components/Navbar";
+import Login from "./pages/Login";
+import GradeEvaluation from "./pages/GradeEvaluation";
+import PasswordChecker from "./pages/PasswordChecker";
+import AttendanceChecker from "./pages/AttendanceChecker";
+
+const activities = [
+  {
+    id: "login",
+    number: 1,
+    title: "Login Authentication",
+    description:
+      "Validate a username and password against sample credentials and manage login/logout state.",
+  },
+  {
+    id: "grades",
+    number: 2,
+    title: "Student Grade Evaluation",
+    description:
+      "Enter a student's score and get an automatic remark based on grade ranges.",
+  },
+  {
+    id: "password",
+    number: 3,
+    title: "Password Strength Checker",
+    description:
+      "Check password length and receive live feedback on how strong it is.",
+  },
+  {
+    id: "electricity",
+    number: 4,
+    title: "Electricity Bill Calculator",
+    description:
+      "Calculate a customer's electricity bill based on kWh consumption and tiered rates.",
+  },
+  {
+    id: "attendance",
+    number: 5,
+    title: "Employee Attendance Checker",
+    description:
+      "Check an employee's time-in and determine whether they are on time, late, or very late.",
+  },
+];
+
+function Home({ setActivePage }) {
+  return (
+    <main className="home">
+      <section className="hero">
+        <h1>React Activity Portal</h1>
+        <p>
+          Five interactive React activities demonstrating state, events,
+          conditional logic, validation, and calculations.
+        </p>
+      </section>
+
+      <section className="activity-grid" aria-label="React activities">
+        {activities.map((activity) => (
+          <article className="activity-card" key={activity.id}>
+            <span className="activity-number">{activity.number}</span>
+            <h2>{activity.title}</h2>
+            <p>{activity.description}</p>
+            <button type="button" onClick={() => setActivePage(activity.id)}>
+              Open Activity
+            </button>
+          </article>
+        ))}
+      </section>
+    </main>
+  );
+}
+
+function ElectricityBill() {
+  return (
+    <main className="activity-page">
+      <h1>Electricity Bill Calculator</h1>
+      <p>This activity is ready to be connected to its calculator form.</p>
+    </main>
+  );
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activePage, setActivePage] = useState("home");
+
+  const pages = {
+    home: <Home setActivePage={setActivePage} />,
+    login: <Login />,
+    grades: <GradeEvaluation />,
+    password: <PasswordChecker />,
+    electricity: <ElectricityBill />,
+    attendance: <AttendanceChecker />,
+  };
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      <Navbar activePage={activePage} setActivePage={setActivePage} />
+      {pages[activePage]}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
