@@ -220,6 +220,86 @@ button {
   padding: 12px 14px;
 }
 
+.activity-intro {
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.password-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+  text-align: left;
+}
+
+.password-form label {
+  color: var(--heading);
+  font-weight: 700;
+}
+
+.password-form input {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  width: 100%;
+}
+
+.password-input-wrapper {
+  position: relative;
+}
+
+.password-input-wrapper input {
+  padding-right: 70px;
+}
+
+.password-visibility-button {
+  background: transparent;
+  border: 0;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.password-form input:focus {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent-soft);
+}
+
+.character-count {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 2px 0 0;
+}
+
+.password-feedback {
+  background: #f1f5f9;
+  border-radius: 8px;
+  color: var(--muted);
+  margin: 4px 0 0;
+  padding: 12px;
+}
+
+.password-feedback.weak {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.password-feedback.medium {
+  background: #fef3c7;
+  color: #a16207;
+}
+
+.password-feedback.strong {
+  background: #dcfce7;
+  color: #15803d;
+}
+
 @media (max-width: 920px) {
   .navbar {
     align-items: flex-start;
