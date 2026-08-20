@@ -1,7 +1,7 @@
 function Login() {
   return (
     <div className="login">
-      <h2>Login</h2>
+      <h2>Login Authentication</h2>
       <form>
         <input type="text" placeholder="Username" />
         <input type="password" placeholder="Password" />

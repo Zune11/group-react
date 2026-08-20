@@ -10,36 +10,21 @@ const activities = [
     id: "login",
     number: 1,
     title: "Login Authentication",
-    description:
-      "Validate a username and password against sample credentials and manage login/logout state.",
   },
   {
     id: "grades",
     number: 2,
     title: "Student Grade Evaluation",
-    description:
-      "Enter a student's score and get an automatic remark based on grade ranges.",
   },
   {
     id: "password",
     number: 3,
     title: "Password Strength Checker",
-    description:
-      "Check password length and receive live feedback on how strong it is.",
-  },
-  {
-    id: "electricity",
-    number: 4,
-    title: "Electricity Bill Calculator",
-    description:
-      "Calculate a customer's electricity bill based on kWh consumption and tiered rates.",
   },
   {
     id: "attendance",
     number: 5,
     title: "Employee Attendance Checker",
-    description:
-      "Check an employee's time-in and determine whether they are on time, late, or very late.",
   },
 ];
 
@@ -59,7 +44,6 @@ function Home({ setActivePage }) {
           <article className="activity-card" key={activity.id}>
             <span className="activity-number">{activity.number}</span>
             <h2>{activity.title}</h2>
-            <p>{activity.description}</p>
             <button type="button" onClick={() => setActivePage(activity.id)}>
               Open Activity
             </button>
