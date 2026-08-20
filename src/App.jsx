@@ -54,15 +54,6 @@ function Home({ setActivePage }) {
   );
 }
 
-function ElectricityBill() {
-  return (
-    <main className="activity-page">
-      <h1>Electricity Bill Calculator</h1>
-      <p>This activity is ready to be connected to its calculator form.</p>
-    </main>
-  );
-}
-
 function App() {
   const [activePage, setActivePage] = useState("home");
 
@@ -71,7 +62,6 @@ function App() {
     login: <Login />,
     grades: <GradeEvaluation />,
     password: <PasswordChecker />,
-    electricity: <ElectricityBill />,
     attendance: <AttendanceChecker />,
   };
 
