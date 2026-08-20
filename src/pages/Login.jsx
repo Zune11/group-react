@@ -2,9 +2,12 @@ function Login() {
   return (
     <div className="login">
       <h2>Login Authentication</h2>
+      <h4>Activity # 1</h4>
       <form>
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
+        <label htmlFor="username">Username:</label>
+        <input type="text" id="username" />
+        <label htmlFor="password">Password:</label>
+        <input type="password" id="password"/>
         <button type="submit">Login</button>
       </form>
     </div>
